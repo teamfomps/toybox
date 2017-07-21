@@ -1,3 +1,10 @@
+<%= if flash[:success] %>
+	<div style="padding: 1em; background-color: #dfd; color: #050; border: 1px solid #050; border-radius: 8px;">
+		<%= flash[:message] %>
+	</div>
+<% end %>
+
+
 <h1>Contact Jack</h1>
 <%= form_for @message do |f| %>
 	<div id="name_email_container" style="width: 300px;">

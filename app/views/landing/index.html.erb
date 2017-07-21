@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jack Pearson: Musician and Storyteller</title>
+	<meta name="Description" content="Jack Pearson is a musician and storyteller from Minneapolis, Minnesota." />
+	<%= stylesheet_link_tag    'tree', media: 'all', 'data-turbolinks-track': 'reload' %>
+	<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<map name="tree_image_map">
+	<area shape="rect" href="/contact/" coords="113,303,212,332" alt="">
+	<area shape="rect" href="/press/" coords="428,215,496,246" alt="">
+	<area shape="poly" href="/calendar/" coords="62,237,150,204,166,231,71,262" alt="">
+	<area shape="poly" href="/store/" coords="125,122,206,107,213,142,128,154" alt="">
+	<area shape="poly" href="/recordings/" coords="259,72,340,72,356,132,238,138,238,114,259,111" alt="">
+	<area shape="poly" href="/otherstuff/" coords="387,147,461,137,474,194,399,192" alt="">
+	<area shape="poly" href="/performance/" coords="196,223,259,197,354,200,394,237,367,260,335,239,264,237,215,259" alt="">
+	<area shape="poly" href="/bio/" coords="422,276,469,295,460,328,414,311" alt="">
+</map>
+
+<div id="tree">
+	<p align="center">
+		<img src="<%= asset_path('mainpage-tree.jpg') %>" alt="" usemap="#tree_image_map" width="597" height="600" border="0">
+	</p>
+
+	<!--<p align="center"><span id="news">NEWS:</span><a href="/news/">Jack's music on <em>A Prairie Home Companion</em>!</a></p> -->
+
+	<!-- <p align="center"><span id="news">NEWS:</span><a href="/news/">{{ latest_item.title|safe }}</a></p> -->
+
+	<p align ="center" class="copyright-front-page">Copyright &copy; 2009 Jack Pearson.  All rights reserved.</p>
+
+
+</div>
+
+<div id="main_nav_list_invisible">
+	<ul>
+		<li><a href="/contact/">Contact</a></li>
+		<li><a href="/press/">Press</a></li>
+		<li><a href="/calendar/">Calendar</a></li>
+		<li><a href="/store/">Store</a></li>
+		<li><a href="/recordings/">Recordings</a></li>
+		<li><a href="/otherstuff/">Other Stuff</a></li>
+		<li><a href="/performance/">Performance</a></li>
+		<li><a href="/bio/">Bio</a></li>
+		<li><a href="/news/">News</a></li>
+	</ul>
+</div>
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-3842716-1");
+	pageTracker._initData();
+	pageTracker._trackPageview();
+</script>
+
+</body>
+</html>

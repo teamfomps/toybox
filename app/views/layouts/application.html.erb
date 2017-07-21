@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Toybox</title>
+    <meta charset="utf-8">
+    <meta name="Description" content="Jack Pearson is a musician and storyteller from Minneapolis, Minnesota." />
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<body>
+  <div id="header">
+      <h1>Jack Pearson</h1>
+      <span id="subtitle">Musician &amp; Storyteller</span>
+  </div>
+  <div id="width-enforcer">
+  <div id="navigation">
+    <ul>
+  		<li><a href="/news/">News</a></li>
+  		<li><a href="/bio/">Biography</a></li>
+  		<li><a href="/recordings/">Recordings</a></li>
+  		<li><a href="/performance/">Performance</a></li>
+  		<li><a href="/calendar/">Calendar</a></li>
+  		<li><a href="/store/">Store</a></li>
+  		<li><a href="/press/">Press</a></li>
+  		<li><a href="/contact/">Contact</a></li>
+  		<li><a href="/otherstuff/">Other Stuff</a></li>
+    </ul>
+    <!-- Shopping Cart
+      {% url satchmo_cart as carturl %}
+	{% url satchmo_checkout-step1 as checkouturl %}
+	{% if carturl %}
+          <div id="shopping-cart-nav">
+              <a href="{{ carturl }}"><img
+                  src="<%= asset_path('shopping-cart-icon.png') %>"
+                  alt="" /></a><a href="{{ carturl }}">Shopping Cart</a>
+	    </div>
+	{% endif %}
+  END OF SHOPPING CART -->
+  </div>
+  <div id="main">
+      <%= yield %>
+  </div>
+  </div> <!-- width-enforcer -->
+  <div id="footer-container">
+      <!-- IE Hack -->
+      <div id="feathered_container">
+          <img id="feathered_image" src="<%= asset_path('cover-up.png') %>" alt="" title="" />
+      </div>
+      <div id="footer-text">
+          <p class="copyright">
+			Copyright &copy; 2009 Jack Pearson.  All rights reserved.
+		</p>
+      </div>
+  </div> <!-- footer-container -->
+  <!-- Google Analytics -->
+<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-3842716-1");
+	pageTracker._initData();
+	pageTracker._trackPageview();
+</script>
+</body>
+</html>

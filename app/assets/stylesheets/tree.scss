@@ -1,0 +1,35 @@
+#tree {
+	/* width: 597px; */
+	/* background-color: #959595; */
+}
+
+#main_nav_list_invisible { 		
+	position: absolute; 
+	top: -1000px; 
+	left: -1000px;
+}
+
+#news {
+	font-family: "Times New Roman", Times, serif;
+	font-size: 14px;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+}
+
+#tree img {
+	margin-bottom: 3px;
+}
+
+#tree a { margin-left: 0.4em; font-size: 14px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;}
+#tree a:link { color: #02813c; text-decoration: underline; }
+#tree a:visited { color: #02813c; text-decoration: underline; }
+#tree a:hover { color: #02813c; text-decoration: none; }
+
+
+.copyright-front-page {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 12px;
+	color: #aaa;
+	margin-top: 40px;
+	margin-bottom: 30px;
+}

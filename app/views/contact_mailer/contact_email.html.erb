@@ -1,0 +1,8 @@
+<p>Greetings,</p>
+
+<p><%= @message.sender_name %>, whose email address is
+<code><%= @message.sender_email %></code>, wrote the following message:
+
+<hr>
+
+<%= simple_format(@message.body) %>

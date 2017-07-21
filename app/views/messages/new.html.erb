@@ -1,0 +1,85 @@
+<h1>Contact Jack</h1>
+<%= form_for @message do |f| %>
+	<div id="name_email_container" style="width: 300px;">
+		<p class="contact_form">Your name:</p>
+		<%= f.text_field :sender_name, required: true, maxlength: '100', size: '40', id: 'id_name' %>
+
+		<p class="contact_form">Your email:</p>
+		<%= f.email_field :sender_email, required: true, maxlength: '200', size: '40', id: 'id_email' %>
+	</div>
+
+	<div id="contact_info_container" style="width: 300px">
+		<p id="jackpearson"><strong>Jack Pearson</strong></p>
+		<p>4533 16th Ave. S.</p>
+		<p>Minneapolis, MN 55407</p>
+
+		<p style="margin-top: 10px;"><span class="phone_fax_email">612-722-1106</span><span class="grey">ph:</span></p>
+		<p><span class="phone_fax_email">612-722-3663</span><span class="grey">fx:</span></p>
+		<p><span class="phone_fax_email"><%= image_tag('image3.png') %></span><span class="grey">em:</span></p>
+	</div>
+
+	<div id="email_body_container">
+		<p class="contact_form">Email body:</p>
+		<%= f.text_area :body, required: true, rows: '12', cols: '60', id: 'id_body' %>
+
+		<p><%= f.submit 'Send Message' %></p>
+	</div>
+<% end %>
+<!--
+<form method="post" action="/contact/">
+	<div id="name_email_container" style="width: 300px;">
+
+		<p class="contact_form">Your name:</p>
+		<input id="id_name" type="text" class="required" name="name" maxlength="100" size="40" />
+
+		<p class="contact_form">Your email:</p>
+		<input id="id_email" type="text" class="required" name="email" maxlength="200" size="40" />
+
+	</div>
+
+	<div id="contact_info_container" style="width: 300px">
+
+		<p id="jackpearson"><strong>Jack Pearson</strong></p>
+		<p>4533 16th Ave. S.</p>
+		<p>Minneapolis, MN 55407</p>
+
+		<p style="margin-top: 10px;"><span class="phone_fax_email">612-722-1106</span><span class="grey">ph:</span></p>
+		<p><span class="phone_fax_email">612-722-3663</span><span class="grey">fx:</span></p>
+		<p><span class="phone_fax_email"><%= image_tag('image3.png') %></span><span class="grey">em:</span></p>
+
+	</div>
+
+	<div id="email_body_container">
+
+		<p class="contact_form">Email body:</p>
+		<textarea id="id_body" rows="12" cols="60" name="body" class="required"></textarea>
+
+		<p><input type="submit" value="  Send Email  " /></p>
+
+	</div>
+
+</form>
+<script type="text/javascript">
+    // Set up contact form instruction message.
+    var messageBodyInstructions = 'Type your message here.';
+    $('textarea#id_body').text(messageBodyInstructions);
+
+    // Clears contact form when necessary.  Requires jQuery.
+    $('textarea#id_body').click(function () {
+        if ($(this).text() == messageBodyInstructions)
+    	{
+                $(this).text('');
+    	}
+        });
+
+    // Restores contact form to default when necessary.
+
+    // NOTE: Broken, and I don't know why
+
+    /*$('textarea#id_body').blur(function () {
+        if ($(this).text() == '')
+    	{
+    	    $(this).text(messageBodyInstructions);
+    	}
+        });*/
+</script> -->

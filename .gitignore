@@ -13,6 +13,9 @@
 !/log/.keep
 !/tmp/.keep
 
+/db/seeds/seed_assets
+/db/seeds/seed_assets/*
+
 /node_modules
 /yarn-error.log
 

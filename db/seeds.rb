@@ -1,7 +1,97 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
+# def create_member(opts = {})
+#    attributes = opts.reverse_merge(
+#      password: '12345678',
+#      confirmed_at: Time.zone.now
+#    )
+#    Member.create!(attributes)
+# end
 #
-# Examples:
+# def translate_role(role)
+#   roles = {
+#     '3' => :member,
+#     '6' => :admin,
+#     '11' => :admin,
+#     '9' => :member,
+#     '21' => :sock_puppet,
+#     '20' => :sock_puppet
+#   }
+#   roles[role]
+# end
 #
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# def translate_boolean(value)
+#   value == '1'
+# end
+#
+# # Make sure the legacy Vanilla database exists before proceeding
+# db = Mysql.new('127.0.0.1', 'stephen', '', 'vanilla')
+#
+# [Member, Category, Discussion, Comment].each do |collection|
+#   collection.delete_all
+# end
+#
+# ### Members ###
+#
+# rows = db.query('SELECT * FROM LUM_User')
+# rows.each_hash do |row|
+#   m = create_member(
+#     id: row["UserID"].to_i,
+#     first_name: row["FirstName"],
+#     last_name: row['LastName'],
+#     handle: row['Name'],
+#     email: row['Email'],
+#     sign_in_count: row['CountVisit'].to_i,
+#     discussion_count: row['CountDiscussions'].to_i,
+#     comment_count: row['CountComments'].to_i,
+#     created_at: row['DateFirstVisit'],
+#     last_active_at: row['DateLastActive'],
+#     last_created_discussion_at: row['LastDiscussionPost'],
+#     last_created_comment_at: row['LastCommentPost'],
+#     role: translate_role(row['RoleID'])
+#   )
+# end
+#
+# ### Categories ###
+#
+# rows = db.query('SELECT * FROM LUM_Category')
+# rows.each_hash do |row|
+#   Category.create(id: row['CategoryID'],
+#                   name: row['Name'],
+#                   description: row['Description'],
+#                   priority: row['Priority'])
+# end
+#
+# ### Public Discussions ###
+# rows = db.query('SELECT * FROM LUM_Discussion WHERE CategoryID <> 11 AND WhisperUserID = 0')
+# rows.each_hash do |row|
+#   d = Discussion.new
+#   d.id = row['DiscussionID']
+#   d.category_id = row['CategoryID']
+#   d.member_id = row['AuthUserID']
+#   d.name = row['Name']
+#   d.comment_count = row['CountComments'].to_i
+#   d.first_comment_id = row['FirstCommentID']
+#   d.is_active = translate_boolean(row['Active'])
+#   d.is_closed = translate_boolean(row['Closed'])
+#   d.is_sticky = translate_boolean(row['Sticky'])
+#   d.created_at = row['DateCreated']
+#   d.updated_at = row['DateLastActive']
+#   d.save!
+# end
+#
+# ### Public Comments ###
+# rows = db.query('SELECT * FROM LUM_Comment WHERE WhisperUserID = 0')
+# rows.each_hash do |row|
+#   c = Comment.new
+#   c.id = row['CommentID']
+#   c.discussion_id = row['DiscussionID']
+#   c.member_id = row['AuthUserID']
+#   c.body = row['Body']
+#   c.format = row['FormatType']
+#   c.is_deleted = translate_boolean(row['Deleted'])
+#   if c.is_deleted
+#     c.deleted_at = row['DateDeleted']
+#   end
+#   c.created_at = row['DateCreated']
+#   c.updated_at = row['DateEdited']
+#   c.save!
+# end

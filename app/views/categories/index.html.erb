@@ -1,0 +1,15 @@
+<div id="album-container">
+  <h1>Songs <span class="amp">&amp;</span> Stories</h1>
+	<p>Jack's award-winning albums just keep getting better. Click below for lyrics, audio, and more!</p>
+
+  <% @categories.each do |category| %>
+    <h2>For <%= category.name %></h2>
+    <% category.albums.each do |album| %>
+      <div class="album-thumb">
+        <a href="<%= album_path(album) %>"><img width="150" height="150" src="<%= album.cover_art.medium.url %>" alt="<%= album.title %>"></a>
+        <p>LOL <%= link_to album.title, album_path(album) %></p>
+      </div>
+    <% end %>
+    <br style="clear: both;">
+  <% end %>
+</div>

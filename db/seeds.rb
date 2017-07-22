@@ -1,97 +1,112 @@
-# def create_member(opts = {})
-#    attributes = opts.reverse_merge(
-#      password: '12345678',
-#      confirmed_at: Time.zone.now
-#    )
-#    Member.create!(attributes)
+db = Mysql2::Client.new(host: '127.0.0.1',
+                        username: 'root',
+                        database: 'jpearson_toybox')
+
+binding.pry
+
+# # import genres
+# Category.destroy_all
+# results = db.query('SELECT * FROM `recordings_genre`')
+# results.each do |row|
+#   Category.create(name: row['name'])
 # end
 #
-# def translate_role(role)
-#   roles = {
-#     '3' => :member,
-#     '6' => :admin,
-#     '11' => :admin,
-#     '9' => :member,
-#     '21' => :sock_puppet,
-#     '20' => :sock_puppet
-#   }
-#   roles[role]
-# end
+# # import albums
 #
-# def translate_boolean(value)
-#   value == '1'
-# end
+# def create_album(row)
+#   adult_slugs = ["come-share-fire",
+#            "fax-yourself-jesus",
+#            "from-the-heart-of-scandinavia",
+#            "heartwood",
+#            "bluegrass-gospel"]
 #
-# # Make sure the legacy Vanilla database exists before proceeding
-# db = Mysql.new('127.0.0.1', 'stephen', '', 'vanilla')
+#   a = Album.new
+#   a.slug = row['slug']
+#   a.title = row['name']
+#   a.short_description = row['short_description']
+#   a.long_description = row['long_description']
+#   a.for_sale = row['active'] == 1
+#   a.published = row['active'] == 1
+#   a.category = adult_slugs.include? row['slug'] ? Category.last : Category.first
 #
-# [Member, Category, Discussion, Comment].each do |collection|
-#   collection.delete_all
-# end
-#
-# ### Members ###
-#
-# rows = db.query('SELECT * FROM LUM_User')
-# rows.each_hash do |row|
-#   m = create_member(
-#     id: row["UserID"].to_i,
-#     first_name: row["FirstName"],
-#     last_name: row['LastName'],
-#     handle: row['Name'],
-#     email: row['Email'],
-#     sign_in_count: row['CountVisit'].to_i,
-#     discussion_count: row['CountDiscussions'].to_i,
-#     comment_count: row['CountComments'].to_i,
-#     created_at: row['DateFirstVisit'],
-#     last_active_at: row['DateLastActive'],
-#     last_created_discussion_at: row['LastDiscussionPost'],
-#     last_created_comment_at: row['LastCommentPost'],
-#     role: translate_role(row['RoleID'])
-#   )
-# end
-#
-# ### Categories ###
-#
-# rows = db.query('SELECT * FROM LUM_Category')
-# rows.each_hash do |row|
-#   Category.create(id: row['CategoryID'],
-#                   name: row['Name'],
-#                   description: row['Description'],
-#                   priority: row['Priority'])
-# end
-#
-# ### Public Discussions ###
-# rows = db.query('SELECT * FROM LUM_Discussion WHERE CategoryID <> 11 AND WhisperUserID = 0')
-# rows.each_hash do |row|
-#   d = Discussion.new
-#   d.id = row['DiscussionID']
-#   d.category_id = row['CategoryID']
-#   d.member_id = row['AuthUserID']
-#   d.name = row['Name']
-#   d.comment_count = row['CountComments'].to_i
-#   d.first_comment_id = row['FirstCommentID']
-#   d.is_active = translate_boolean(row['Active'])
-#   d.is_closed = translate_boolean(row['Closed'])
-#   d.is_sticky = translate_boolean(row['Sticky'])
-#   d.created_at = row['DateCreated']
-#   d.updated_at = row['DateLastActive']
-#   d.save!
-# end
-#
-# ### Public Comments ###
-# rows = db.query('SELECT * FROM LUM_Comment WHERE WhisperUserID = 0')
-# rows.each_hash do |row|
-#   c = Comment.new
-#   c.id = row['CommentID']
-#   c.discussion_id = row['DiscussionID']
-#   c.member_id = row['AuthUserID']
-#   c.body = row['Body']
-#   c.format = row['FormatType']
-#   c.is_deleted = translate_boolean(row['Deleted'])
-#   if c.is_deleted
-#     c.deleted_at = row['DateDeleted']
+#   File.open(Rails.root.join('db/seed_assets/' + row['picture'])) do |f|
+#     a.cover_art = f
 #   end
-#   c.created_at = row['DateCreated']
-#   c.updated_at = row['DateEdited']
-#   c.save!
+#
+#   a.save!
 # end
+#
+# Album.destroy_all
+# results = db.query('SELECT * FROM product_product a LEFT JOIN product_productimage img ON (a.id = img.product_id) WHERE items_in_stock > 5;')
+# results.each do |row|
+#   create_album(row)
+# end
+#
+# # import songs
+#
+# def create_song(row)
+#   s = Song.new
+#   s.slug = row['slug']
+#   s.title = row['title']
+#   s.track_number = row['track_number']
+#   s.album = Album.find_by(slug: row['album'])
+#   s.lyrics = row['lyrics']
+#   s.credits = row['credits']
+#
+#   File.open(Rails.root.join('db/seed_assets/' + row['audio_file'])) do |f|
+#     s.audio_file = f
+#   end
+#
+#   s.save!
+# end
+#
+# Song.destroy_all
+# results = db.query('SELECT s.title, s.slug, s.track_number, s.lyrics, s.audio_file, s.credits, p.slug AS album FROM songs_song s INNER JOIN product_product p ON (s.product_id = p.id)')
+# results.each do |row|
+#   create_song(row)
+# end
+
+
+
+# import instruments
+def create_instrument(row)
+  a = Instrument.new
+  a.slug = row['slug']
+  a.name = row['name']
+  a.short_description = row['short_description'] || ''
+  a.long_description = row['long_description'] || ''
+  a.for_sale = row['active'] == 1
+  a.published = row['active'] == 1
+
+  File.open(Rails.root.join('db/seed_assets/' + row['picture'])) do |f|
+    a.picture = f
+  end
+
+  a.save!
+end
+
+results = db.query('SELECT * FROM product_product a LEFT JOIN product_productimage img ON (a.id = img.product_id) WHERE items_in_stock < 10;')
+results.each do |row|
+  create_instrument(row)
+end
+
+# import calendar_dates
+Event.destroy_all
+results = db.query('SELECT * FROM events_event;')
+results.each do |row|
+  row['open_to_public'] = row['open_to_public'] == 1
+  row['publish'] = row['publish'] == 1
+  Event.create(row)
+end
+
+# import news_items
+NewsItem.destroy_all
+results = db.query('SELECT * FROM news_newsitem;')
+results.each do |row|
+  n = NewsItem.new
+  n.title = row['title']
+  n.body = row['body']
+  n.created_at = row['timestamp']
+  n.updated_at = Time.zone.now
+  n.save!
+end

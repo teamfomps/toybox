@@ -1,0 +1,26 @@
+<h2><%= @album.title %></h2>
+  <div style="width:300px;">
+  </div>
+
+<div id="product-image">
+	<img class="album-big" width="300" height="300" src="<%= @album.cover_art.url %>" alt="7 Stories Tall">
+</div>
+<div id="product-details">
+	<table id="track-listing" border="0">
+    <tbody>
+      <% @album.songs.order('track_number ASC').each do |song| %>
+        <tr class="<%= song.track_number % 2 == 0 ? 'even' : 'odd' %>">
+          <td class="track-number"><%= song.track_number %>.</td>
+          <td class="track-title"><%= song.title %>
+          <td class="track-audio-player">
+            <object type="application/x-shockwave-flash" data="/flash/musicplayer.swf?song_url=<%= song.audio_file.url %>" width="17" height="17">
+	    			    <param name="movie" value="/flash/musicplayer.swf?song_url=<%= song.audio_file.url %>">
+	    			    X
+	    	    </object>
+          </td>
+          <td class="track-lyrics">&nbsp;|&nbsp;<%= link_to 'lyrics', album_song_path(@album, song) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

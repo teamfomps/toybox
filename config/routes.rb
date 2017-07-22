@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :instruments
+  get 'categories/index'
+
+  get 'albums/songs'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'landing#index'
 
@@ -18,12 +23,15 @@ Rails.application.routes.draw do
   get '/performance/chris-and-jack', to: 'pages#chris_jack'
 
   resources :messages, only: [:new, :create]
+  resources :albums, only: [:show] do
+    resources :songs, only: [:show]
+  end
 
-  get '/recordings', to: 'pages#maintenance'
-  get '/recordings/*uri', to: 'pages#maintenance'
+  get '/recordings', to: 'categories#index'
+  get '/recordings/*uri', to: 'pages#album_redirect'
+  get '/otherstuff', to: 'pages#otherstuff'
   get '/store', to: 'pages#maintenance'
   get '/store/*uri', to: 'pages#maintenance'
-  get '/otherstuff', to: 'pages#maintenance'
   get '/calendar', to: 'pages#maintenance'
-  get '/news', to: 'pages#maintenance'
+  get '/news', to: 'news_items#index'
 end

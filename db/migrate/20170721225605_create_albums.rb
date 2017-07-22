@@ -9,7 +9,7 @@ class CreateAlbums < ActiveRecord::Migration[5.1]
       t.boolean :for_sale, null: false, default: false
       t.boolean :published, null: false, default: true
       t.string :cover_art, null: true
-      t.references :categories
+      t.references :category
       t.timestamps
     end
   end

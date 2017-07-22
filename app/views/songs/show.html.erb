@@ -1,0 +1,15 @@
+<h1><%= @song.title %></h1>
+Album: <%= link_to @song.album.title, album_path(@song.album), class: 'song-detail-album-name' %>
+
+<h2>Lyrics</h2>
+<% if @song.lyrics.present? %>
+  <pre id="song_lyrics"><%= @song.lyrics.html_safe %></pre>
+<% else %>
+  <p>No lyrics</p>
+<% end %>
+
+<% if @song.credits.present? %>
+  <h2>Credit</h2>
+  <p></p>
+  <p><%= @song.credits.html_safe %></p>
+<% end %>

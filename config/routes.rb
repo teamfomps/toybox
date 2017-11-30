@@ -34,4 +34,7 @@ Rails.application.routes.draw do
   get '/store/*uri', to: 'pages#maintenance'
   get '/calendar', to: 'pages#maintenance'
   get '/news', to: 'news_items#index'
+
+  # Shipping Cost Callback
+  post '/api/shipping', to: 'shipping#index'
 end

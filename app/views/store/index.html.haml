@@ -1,0 +1,37 @@
+%h1 Store
+
+%h2 Albums for Children
+- @kids_albums.each do |album|
+  .product_list_item
+    = link_to album_path(album) do
+      = image_tag(album.cover_art.thumb.url, size: '100x100', alt: album.title, class: 'product_thumb')
+    %p.product_short_description
+      = link_to album_path(album) do
+        = album.title
+        &mdash;
+        = number_to_currency(album.price_in_pennies / 100)
+%br{style: 'clear:both;'}
+
+%h2 Albums for Adults and Families
+- @adult_albums.each do |album|
+  .product_list_item
+    = link_to album_path(album) do
+      = image_tag(album.cover_art.thumb.url, size: '100x100', alt: album.title, class: 'product_thumb')
+    %p.product_short_description
+      = link_to album_path(album) do
+        = album.title
+        &mdash;
+        = number_to_currency(album.price_in_pennies / 100)
+%br{style: 'clear:both;'}
+
+%h2 Instruments
+- @instruments.each do |instrument|
+  .product_list_item
+    = link_to instrument_path(instrument) do
+      = image_tag(instrument.picture.thumb.url, size: '100x100', alt: instrument.name, class: 'product_thumb')
+    %p.product_short_description
+      = link_to instrument_path(instrument) do
+        = instrument.name
+        &mdash;
+        = number_to_currency(instrument.price_in_pennies / 100)
+%br{style: 'clear:both;'}

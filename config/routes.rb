@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   resources :instruments
+
+  resource :order, only: [:show, :update]
+  resources :order_items
+
   get 'categories/index'
 
   get 'albums/songs'
@@ -29,9 +33,13 @@ Rails.application.routes.draw do
 
   get '/recordings', to: 'categories#index'
   get '/recordings/*uri', to: 'pages#album_redirect'
+  get '/store/product/*uri', to: 'pages#instrument_redirect'
   get '/otherstuff', to: 'pages#otherstuff'
-  get '/store', to: 'pages#maintenance'
   get '/store/*uri', to: 'pages#maintenance'
   get '/calendar', to: 'pages#maintenance'
   get '/news', to: 'news_items#index'
+
+  # Store
+  # get '/store', to: 'pages#maintenance'
+  get '/store', to: 'store#index'
 end

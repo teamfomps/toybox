@@ -28,17 +28,14 @@
   		<li><a href="/contact/">Contact</a></li>
   		<li><a href="/otherstuff/">Other Stuff</a></li>
     </ul>
-    <!-- Shopping Cart
-      {% url satchmo_cart as carturl %}
-	{% url satchmo_checkout-step1 as checkouturl %}
-	{% if carturl %}
-          <div id="shopping-cart-nav">
-              <a href="{{ carturl }}"><img
-                  src="<%= asset_path('shopping-cart-icon.png') %>"
-                  alt="" /></a><a href="{{ carturl }}">Shopping Cart</a>
-	    </div>
-	{% endif %}
-  END OF SHOPPING CART -->
+    <% if true # TODO: Hide this during checkout %>
+      <div id="shopping-cart-nav">
+        <%= link_to order_path do %>
+          <%= image_tag('shopping-cart-icon.png') %>
+          Shopping Cart
+        <% end %>
+      </div>
+    <% end %>
   </div>
   <div id="main">
       <%= yield %>

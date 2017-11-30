@@ -5,18 +5,26 @@ class Album < ApplicationRecord
   has_many :songs
   mount_uploader :cover_art, CoverArtUploader
 
+  def name
+    title
+  end
+
+  def price_in_pennies
+    1500
+  end
+
   def register_with_stripe
     return unless self.sku.nil?
     p = Stripe::Product.create({
       name: self.title,
       active: self.for_sale,
       images: [self.cover_art.url],
-      url: "http://www.jackpearson.org/albums/#{self.slug}"
+      url: "https://www.jackpearson.org/albums/#{self.slug}"
     })
 
     s = Stripe::SKU.create({
       product: p.id,
-      price: 1500,
+      price: self.price_in_pennies,
       currency: 'usd',
       inventory: { type: 'infinite' },
       active: self.for_sale,

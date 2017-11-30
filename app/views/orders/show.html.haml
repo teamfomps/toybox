@@ -1,0 +1,29 @@
+%h1 Shopping Cart
+
+- if @order.order_items.count == 0
+  %p
+    Your shopping cart is currently empty.  You can shop for merchandise in the
+    <a href="/store/">store</a>.
+- else
+  %h2 Your Cart
+  %table#shopping-cart
+    %tr
+      %th
+      %th Quantity
+      %th Item
+      %th Price
+      %th{ align: 'center' } Total
+    - @order.order_items.each do |oi|
+      %tr
+        %td
+          %small
+            = link_to 'Remove', order_item_path(oi), method: :delete
+        %td{ align: 'center' }
+          = render 'quantity_form', order_item: oi
+        %td
+          = link_to oi.item_model.name, cart_item_uri(oi)
+        %td{ align: 'center' }
+          = number_to_currency(oi.item_model.price_in_pennies / 100.0)
+        %td{ align: 'center'}
+          = number_to_currency((oi.item_model.price_in_pennies * oi.quantity) / 100.0)
+  = link_to 'Check out', '/checkout', id: 'shopping-cart-checkout-link'

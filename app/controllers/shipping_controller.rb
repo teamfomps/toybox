@@ -14,7 +14,7 @@ class ShippingController < ApplicationController
     end
 
     order_update = {
-      order_id: order.id,
+      order_id: order['id'],
       items: [], # Taxes, empty because they are included in price
       shipping_methods: []
     }

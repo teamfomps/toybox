@@ -44,4 +44,5 @@ Rails.application.routes.draw do
   # Store
   # get '/store', to: 'pages#maintenance'
   get '/store', to: 'store#index'
+  post '/api/shipping', to: 'shipping#index'
 end

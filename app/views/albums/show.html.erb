@@ -27,7 +27,7 @@
 
 <div style="clear:both;">
 	<h3>Price
-	<span id="price"><%= number_to_currency(@album.price_in_pennies / 100) %></span>
+	<span id="price"><%= format_pennies(@album.price_in_pennies) %></span>
 	</h3>
 	<!-- end price -->
 </div>

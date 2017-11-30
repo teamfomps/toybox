@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :instruments
 
   resource :order, only: [:show, :update]
+  resource :address, only: [:new, :create]
+  resource :payment, only: [:new, :create]
   resources :order_items
 
   get 'categories/index'

@@ -30,6 +30,7 @@ gem 'better_errors'
 gem 'binding_of_caller'
 
 gem 'stripe'
+gem 'email_validator'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'

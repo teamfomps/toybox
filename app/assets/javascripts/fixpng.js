@@ -1,4 +1,4 @@
-window.attachEvent("onload", fixpng);
+// window.attachEvent("onload", fixpng);
 
 function fixpng()
 {

@@ -23,7 +23,7 @@
         %td
           = link_to oi.item_model.name, cart_item_uri(oi)
         %td{ align: 'center' }
-          = number_to_currency(oi.item_model.price_in_pennies / 100.0)
+          = format_pennies(oi.item_model.price_in_pennies)
         %td{ align: 'center'}
-          = number_to_currency((oi.item_model.price_in_pennies * oi.quantity) / 100.0)
-  = link_to 'Check out', '/checkout', id: 'shopping-cart-checkout-link'
+          = format_pennies(oi.item_model.price_in_pennies * oi.quantity)
+  = link_to 'Check out', new_address_path, id: 'shopping-cart-checkout-link'

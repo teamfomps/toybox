@@ -11,7 +11,7 @@
 %div{ style: 'clear:both;' }
   %h3
     Price
-    = number_to_currency(@instrument.price_in_pennies / 100)
+    = format_pennies(@instrument.price_in_pennies)
 
 - if @instrument.for_sale?
   = form_for(OrderItem.new) do |f|

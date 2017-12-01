@@ -30,6 +30,9 @@ gem 'better_errors'
 gem 'binding_of_caller'
 
 gem 'stripe'
+gem 'administrate'
+gem 'administrate-field-carrierwave', '~> 0.2.0'
+gem 'devise'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'

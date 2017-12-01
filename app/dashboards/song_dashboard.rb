@@ -67,7 +67,7 @@ class SongDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how songs are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(song)
-  #   "Song ##{song.id}"
-  # end
+  def display_resource(song)
+    song.title
+  end
 end

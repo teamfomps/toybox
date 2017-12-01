@@ -76,7 +76,7 @@ class InstrumentDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how instruments are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(instrument)
-  #   "Instrument ##{instrument.id}"
-  # end
+  def display_resource(instrument)
+    instrument.name
+  end
 end

@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  devise_for :users
+  namespace :admin do
+    resources :albums
+    resources :categories
+    resources :events
+    resources :instruments
+    resources :news_items
+    resources :orders
+    resources :order_items
+    resources :songs
+
+    root to: "albums#index"
+  end
+
   resources :instruments
 
   resource :order, only: [:show, :update]

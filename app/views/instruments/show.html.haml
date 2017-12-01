@@ -1,0 +1,21 @@
+%h2= @instrument.name
+
+%div{ style: 'width:300px;'}
+
+#product-image
+  = image_tag(@instrument.picture.medium, size: '300x300', class: 'album-big', alt: @instrument.name)
+
+#product-details
+  %p= @instrument.short_description
+
+
+- if @instrument.for_sale? && store_enabled?
+  %div{ style: 'clear:both;' }
+    %h3
+      Price
+      = format_pennies(@instrument.price_in_pennies)
+
+    = form_for(OrderItem.new) do |f|
+      = f.hidden_field :stripe_sku, value: @instrument.sku
+      = f.number_field :quantity, value:  1
+      = f.submit 'Add to cart'

@@ -1,0 +1,40 @@
+%h1 Payment Information
+
+%div{ style: 'float:left;width: 300px;'}
+  %h2 Ship To:
+  = @stripe_order.shipping.name
+  %br
+  = @stripe_order.shipping.address.line1
+  %br
+  - unless @stripe_order.shipping.address.line2.blank?
+    = @stripe_order.shipping.address.line2
+    %br
+  = "#{@stripe_order.shipping.address.city}, #{@stripe_order.shipping.address.state} #{@stripe_order.shipping.address.postal_code}"
+  %br
+
+%div{ style: 'float:left;width:400px;' }
+  %h2 Items
+  %table
+    %tr
+      %th Item
+      %th Cost
+    - @stripe_order.items.each do |order_item|
+      %tr
+        %td
+          = order_item.description
+          - if order_item.quantity.to_i > 1
+            &times;
+            = order_item.quantity
+        %td
+          = format_pennies(order_item.amount)
+    %tr
+      %td
+        %strong Total:
+      %td
+        = format_pennies(@stripe_order.amount)
+
+
+%hr{ style: 'clear:both;' }
+
+%form{ action: payment_path, method: :post }
+  %script{ checkout_options(@stripe_order.amount) }

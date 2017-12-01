@@ -7,7 +7,7 @@
     <% category.albums.each do |album| %>
       <div class="album-thumb">
         <a href="<%= album_path(album) %>"><img width="150" height="150" src="<%= album.cover_art.medium.url %>" alt="<%= album.title %>"></a>
-        <p>LOL <%= link_to album.title, album_path(album) %></p>
+        <p><%= link_to album.title, album_path(album) %></p>
       </div>
     <% end %>
     <br style="clear: both;">

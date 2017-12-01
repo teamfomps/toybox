@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
   resources :instruments
+
+  resource :order, only: [:show, :update]
+  resource :address, only: [:new, :create]
+  resource :payment, only: [:new, :create]
+  resources :order_items
+
   get 'categories/index'
 
   get 'albums/songs'
@@ -29,12 +35,17 @@ Rails.application.routes.draw do
 
   get '/recordings', to: 'categories#index'
   get '/recordings/*uri', to: 'pages#album_redirect'
+  get '/store/product/*uri', to: 'pages#instrument_redirect'
   get '/otherstuff', to: 'pages#otherstuff'
-  get '/store', to: 'pages#maintenance'
   get '/store/*uri', to: 'pages#maintenance'
   get '/calendar', to: 'pages#maintenance'
   get '/news', to: 'news_items#index'
 
-  # Shipping Cost Callback
+  if ENV['ENABLE_STORE'] == 'true'
+    get '/store', to: 'store#index'
+  else
+    get '/store', to: 'pages#maintenance'
+  end
+
   post '/api/shipping', to: 'shipping#index'
 end

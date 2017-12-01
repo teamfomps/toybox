@@ -25,14 +25,14 @@
   </table>
 </div>
 
-<div style="clear:both;">
-	<h3>Price
-	<span id="price"><%= format_pennies(@album.price_in_pennies) %></span>
-	</h3>
-	<!-- end price -->
-</div>
+<% if @album.for_sale? && store_enabled? %>
 
-<% if @album.for_sale? %>
+  <div style="clear:both;">
+    <h3>Price
+    <span id="price"><%= format_pennies(@album.price_in_pennies) %></span>
+    </h3>
+  </div>
+
   <%= form_for(OrderItem.new) do |f| %>
     <%= f.hidden_field :stripe_sku, value: @album.sku %>
     <%= f.number_field :quantity, value:  1 %>

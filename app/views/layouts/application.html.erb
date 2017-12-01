@@ -28,7 +28,7 @@
   		<li><a href="/contact/">Contact</a></li>
   		<li><a href="/otherstuff/">Other Stuff</a></li>
     </ul>
-    <% if true # TODO: Hide this during checkout %>
+    <% if store_enabled? %>
       <div id="shopping-cart-nav">
         <%= link_to order_path do %>
           <%= image_tag('shopping-cart-icon.png') %>

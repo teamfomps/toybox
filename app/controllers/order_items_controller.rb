@@ -13,7 +13,8 @@ class OrderItemsController < ApplicationController
       @order.order_items.create(order_item_params)
     end
 
-    redirect_to URI(request.referer).path
+    # redirect_to URI(request.referer).path
+    redirect_to store_path
   end
 
   def update

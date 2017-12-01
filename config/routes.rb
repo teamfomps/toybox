@@ -41,8 +41,11 @@ Rails.application.routes.draw do
   get '/calendar', to: 'pages#maintenance'
   get '/news', to: 'news_items#index'
 
-  # Store
-  # get '/store', to: 'pages#maintenance'
-  get '/store', to: 'store#index'
+  if ENV['ENABLE_STORE'] == 'true'
+    get '/store', to: 'store#index'
+  else
+    get '/store', to: 'pages#maintenance'
+  end
+
   post '/api/shipping', to: 'shipping#index'
 end

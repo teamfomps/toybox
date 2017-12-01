@@ -5,6 +5,8 @@ class Album < ApplicationRecord
   has_many :songs
   mount_uploader :cover_art, CoverArtUploader
 
+  scope :for_sale, -> { where(for_sale: true) }
+
   def name
     title
   end

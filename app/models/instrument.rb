@@ -3,6 +3,8 @@ class Instrument < ApplicationRecord
   friendly_id :title, use: :slugged
   mount_uploader :picture, CoverArtUploader
 
+  scope :for_sale, -> { where(for_sale: true) }
+
   def register_with_stripe
     return unless self.sku.nil?
     p = Stripe::Product.create({

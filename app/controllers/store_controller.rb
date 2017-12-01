@@ -1,7 +1,7 @@
 class StoreController < ApplicationController
   def index
-    @kids_albums = Category.find_by(name: 'Children').albums
-    @adult_albums = Category.find_by(name: 'Adults & Families').albums
-    @instruments = Instrument.all
+    @kids_albums = Category.find_by(name: 'Children').albums.for_sale
+    @adult_albums = Category.find_by(name: 'Adults & Families').albums.for_sale
+    @instruments = Instrument.for_sale
   end
 end

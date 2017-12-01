@@ -28,4 +28,8 @@ module ApplicationHelper
 
     options
   end
+
+  def store_enabled?
+    ENV['ENABLE_STORE'] == 'true'
+  end
 end

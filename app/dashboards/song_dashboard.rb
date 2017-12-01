@@ -56,7 +56,6 @@ class SongDashboard < Administrate::BaseDashboard
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = [
     :album,
-    :slug,
     :track_number,
     :lyrics,
     :credits,

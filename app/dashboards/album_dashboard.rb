@@ -67,7 +67,6 @@ class AlbumDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = [
     :category,
     :songs,
-    :slug,
     :title,
     :short_description,
     :long_description,
@@ -75,8 +74,6 @@ class AlbumDashboard < Administrate::BaseDashboard
     :for_sale,
     :published,
     :cover_art,
-    :sku,
-    :stripe_id,
   ].freeze
 
   # Overwrite this method to customize how albums are displayed

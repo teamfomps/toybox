@@ -1,0 +1,14 @@
+.alert {
+  background-color: #d5ceff;
+  color: rgba(0,0,0,0.7);
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #5f597e;
+  box-shadow: 1px 1px 8px #ccc;
+
+  .alert-dismiss {
+    float: right;
+    text-decoration: none;
+    font-size: 1.4em;
+  }
+}

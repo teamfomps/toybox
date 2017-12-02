@@ -9,8 +9,10 @@ class OrderItemsController < ApplicationController
       # Update quantity
       oi = @order.order_items.find_by(stripe_sku: order_item_params['stripe_sku'])
       oi.update(quantity: oi.quantity + order_item_params['quantity'])
+      flash[:info] = "#{oi.item_model.name} has been added to your cart."
     else
       @order.order_items.create(order_item_params)
+      flash[:info] = "#{oi.item_model.name} has been added to your cart."
     end
 
     # redirect_to URI(request.referer).path
@@ -27,12 +29,15 @@ class OrderItemsController < ApplicationController
       oi.update(order_item_params)
     end
 
+    flash[:info] = "Cart updated."
     redirect_to order_path
   end
 
   def destroy
     oi = @order.order_items.find(params['id'])
     oi.destroy
+
+    flash[:info] = "#{oi.item_model.name} has been removed from your cart."
     redirect_to order_path
   end
 

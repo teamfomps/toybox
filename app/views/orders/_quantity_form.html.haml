@@ -1,3 +1,8 @@
-= form_for(order_item) do |f|
+= form_for(order_item, html: { class: 'cart-quantity-form'}) do |f|
   = f.number_field :quantity
   = f.submit 'update amount'
+&nbsp;
+&nbsp;
+&nbsp;
+%small
+  = link_to 'Remove', order_item_path(order_item), method: :delete

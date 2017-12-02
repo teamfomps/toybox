@@ -12,6 +12,7 @@ class PaymentsController < ApplicationController
     session.delete(:order_id)
     @order.destroy
 
+    flash[:info] = "We have received your order and sent a receipt to #{params[:stripeEmail]}."
     redirect_to '/store'
   end
 end

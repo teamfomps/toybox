@@ -1,5 +1,9 @@
 class ShippingController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  
   def index
+    Rails.logger.debug(order)
+
     limberjack = Instrument.friendly.find('limberjack')
 
     limberjack_items = 0
@@ -12,6 +16,9 @@ class ShippingController < ApplicationController
         regular_items += 1
       end
     end
+
+    Rails.logger.debug("SHIPPING HOOK: #{limberjack_items} limberjacks")
+    Rails.logger.debug("SHIPPING HOOK: #{regular_items} regular items")
 
     order_update = {
       order_id: order['id'],

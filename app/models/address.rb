@@ -22,7 +22,7 @@ class Address
     address.name = params[:name]
     address.line1 = params[:line1]
     address.city = params[:city]
-    address.state_province = 'MN' #params[:state_province]
+    address.state_province = params[:state_province]
     address.postal_code = params[:postal_code]
     address.country = 'USA' # params[:country]
     address

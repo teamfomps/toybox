@@ -38,7 +38,15 @@
     <% end %>
   </div>
   <div id="main">
-      <%= yield %>
+    <% flash.each do |key, value| %>
+      <div class="alert">
+        <a href="#" class="alert-dismiss">
+          &times;
+        </a>
+        <%= value %>
+      </div>
+    <% end %>
+    <%= yield %>
   </div>
   </div> <!-- width-enforcer -->
   <div id="footer-container">
@@ -63,5 +71,14 @@
 	pageTracker._trackPageview();
 </script> -->
   <!-- <script src="https://js.stripe.com/v3/"></script> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(function() {
+      $('.alert-dismiss').on('click', function(e) {
+        e.preventDefault();
+        $(this).parent().hide();
+      });
+    });
+  </script>
 </body>
 </html>

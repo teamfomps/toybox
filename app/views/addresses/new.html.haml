@@ -1,13 +1,13 @@
 %h1 Shipping Address
 
 = form_for(@address, url: address_path) do |f|
-  %table
+  %table#shipping-address-form
     %tr
       %td= f.label :name
       %td= f.text_field :name
 
     %tr
-      %td= f.label :line1, 'Street Address:'
+      %td= f.label :line1, 'Street Address'
       %td= f.text_field :line1
 
     %tr
@@ -15,8 +15,8 @@
       %td= f.text_field :city
 
     %tr
-      %td= f.label :state
-      %td= 'STATE DROPDOWN'
+      %td= f.label :state_province, 'State'
+      %td= f.select :state_province, options_for_select(us_states),{}, class: 'form-control'
 
     %tr
       %td= f.label :postal_code
@@ -24,4 +24,4 @@
 
     %tr
       %td &nbsp;
-      %td= f.submit 'Save'
+      %td= f.submit 'Proceed to Checkout', class: 'btn'

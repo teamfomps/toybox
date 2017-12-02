@@ -8,16 +8,12 @@
   %h2 Your Cart
   %table#shopping-cart
     %tr
-      %th
       %th Quantity
       %th Item
       %th Price
       %th{ align: 'center' } Total
     - @order.order_items.each do |oi|
       %tr
-        %td
-          %small
-            = link_to 'Remove', order_item_path(oi), method: :delete
         %td{ align: 'center' }
           = render 'quantity_form', order_item: oi
         %td
@@ -26,4 +22,8 @@
           = format_pennies(oi.item_model.price_in_pennies)
         %td{ align: 'center'}
           = format_pennies(oi.item_model.price_in_pennies * oi.quantity)
-  = link_to 'Check out', new_address_path, id: 'shopping-cart-checkout-link'
+  = link_to 'Check out', new_address_path, class: 'btn'
+  &nbsp;
+  &nbsp;
+  &nbsp;
+  = link_to 'Back to shopping', '/store'

@@ -8,7 +8,7 @@ class ShippingController < ApplicationController
     regular_items = 0
 
     order = params['order']
-    order.items.each do |oi|
+    order['items'].each do |oi|
       if oi['parent']['id'] == limberjack.sku
         limberjack_items += 1
       else

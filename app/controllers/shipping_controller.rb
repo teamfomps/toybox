@@ -1,6 +1,6 @@
 class ShippingController < ApplicationController
   skip_before_action :verify_authenticity_token
-  
+
   def index
     Rails.logger.debug(order)
 
@@ -9,6 +9,7 @@ class ShippingController < ApplicationController
     limberjack_items = 0
     regular_items = 0
 
+    order = params['order']
     order.items.each do |oi|
       if oi['parent']['id'] == limberjack.sku
         limberjack_items += 1

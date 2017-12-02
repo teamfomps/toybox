@@ -36,7 +36,7 @@ class ShippingController < ApplicationController
 
     response_payload = { order_update: order_update }
 
-    render json: @response_payload
+    render json: response_payload
   end
 
   protected

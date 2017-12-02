@@ -11,7 +11,7 @@ class OrderItemsController < ApplicationController
       oi.update(quantity: oi.quantity + order_item_params['quantity'])
       flash[:info] = "#{oi.item_model.name} has been added to your cart."
     else
-      @order.order_items.create(order_item_params)
+      oi = @order.order_items.create(order_item_params)
       flash[:info] = "#{oi.item_model.name} has been added to your cart."
     end
 

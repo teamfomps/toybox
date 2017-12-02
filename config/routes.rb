@@ -56,7 +56,8 @@ Rails.application.routes.draw do
   get '/news', to: 'news_items#index'
 
   if ENV['ENABLE_STORE'] == 'true'
-    get '/store', to: 'store#index'
+    #get '/store', to: 'store#index'
+    get '/store', to: 'pages#maintenance'
   else
     get '/store', to: 'pages#maintenance'
   end

@@ -10,9 +10,9 @@ class ShippingController < ApplicationController
     order = params['order']
     order['items'].each do |oi|
       if oi['parent']['id'] == limberjack.sku
-        limberjack_items += 1
+        limberjack_items += oi['quantity'].to_i
       else
-        regular_items += 1
+        regular_items += oi['quantity'].to_i
       end
     end
 

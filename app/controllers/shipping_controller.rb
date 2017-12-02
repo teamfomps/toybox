@@ -4,7 +4,7 @@ class ShippingController < ApplicationController
   def index
     limberjack = Instrument.friendly.find('limberjack')
 
-    Rails.logger.debug("SHIPPING HOOK: Limberjack SKU: #{limberjack.sku}"
+    Rails.logger.debug("SHIPPING HOOK: Limberjack SKU: #{limberjack.sku}")
 
     limberjack_items = 0
     regular_items = 0

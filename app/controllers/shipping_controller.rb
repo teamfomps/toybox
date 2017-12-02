@@ -28,7 +28,7 @@ class ShippingController < ApplicationController
     shipping_method = {
       id: 'standard_shipping',
       description: 'Standard Shipping',
-      amount: calculate_shipping(order),
+      amount: calculate_shipping(limberjack_items, regular_items),
       currency: 'usd'
     }
 

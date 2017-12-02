@@ -4,11 +4,14 @@ class ShippingController < ApplicationController
   def index
     limberjack = Instrument.friendly.find('limberjack')
 
+    Rails.logger.debug("SHIPPING HOOK: Limberjack SKU: #{limberjack.sku}"
+
     limberjack_items = 0
     regular_items = 0
 
     order = params['order']
     order['items'].each do |oi|
+      Rails.logger.debug("SHIPPING HOOK: SKU: #{oi['parent']['id']}")
       if oi['parent']['id'] == limberjack.sku
         limberjack_items += oi['quantity'].to_i
       else

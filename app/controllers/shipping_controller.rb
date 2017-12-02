@@ -2,8 +2,6 @@ class ShippingController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    Rails.logger.debug(order)
-
     limberjack = Instrument.friendly.find('limberjack')
 
     limberjack_items = 0

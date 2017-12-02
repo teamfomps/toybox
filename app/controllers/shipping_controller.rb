@@ -32,7 +32,7 @@ class ShippingController < ApplicationController
       currency: 'usd'
     }
 
-    order_update['shipping_methods'] << shipping_method
+    order_update[:shipping_methods] << shipping_method
 
     response_payload = { order_update: order_update }
 

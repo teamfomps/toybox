@@ -11,6 +11,7 @@ class PaymentsController < ApplicationController
     stripe_order.pay(source: token, email: params[:stripeEmail])
     session.delete(:order_id)
     OrderMailer.notify_email(@order).deliver_now
+    OrderMailer.confirm_email(@order, params[:stripeEmail]).deliver_now
     @order.destroy
 
     flash[:info] = "We have received your order and sent a receipt to #{params[:stripeEmail]}."

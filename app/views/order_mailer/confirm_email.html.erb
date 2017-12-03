@@ -1,0 +1,45 @@
+<p>Greetings,</p>
+
+<p>
+  We've received your order on <a="https://www.jackpearson.org/"> and will
+  ship it out to you as soon as possible. Here's what you ordered:
+</p>
+
+<table border="1" cellpadding="6">
+  <tr>
+    <th><strong>Item</strong></th>
+    <th><strong>Cost</strong></th>
+    <th><strong>Quantity</strong></th>
+    <th><strong>Total</strong></th>
+  </tr>
+  <% @order.order_items.each do |oi| %>
+    <tr>
+      <td><%= oi.item_model.name %></td>
+      <td align="right"><%= format_pennies(oi.item_model.price_in_pennies) %></td>
+      <td align="right"><%= oi.quantity %></td>
+      <td align="right"><%= format_pennies(oi.cost) %></td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td colspan=3 align="right"><strong>Subtotal:</strong></td>
+    <td align="right"><%= format_pennies(@order.cost_breakdown.subtotal) %>
+  </tr>
+  <tr>
+    <td colspan="3" align="right"><strong>Shipping:</strong></td>
+    <td align="right"><%= format_pennies(@order.cost_breakdown.shipping_cost) %></td>
+  </tr>
+  <tr>
+    <td colspan="3" align="right"><strong>Total:</strong></td>
+    <td align="right"><%= format_pennies(@order.cost_breakdown.total) %></td>
+  </tr>
+</table>
+
+<p>
+  We've processed your payment, so you're good to go. If you have any questions,
+  just respond to this email, and we'll get back to you soon.
+</p>
+
+<p>Happy trails,</p>
+
+<p>The Pearson Family</p>

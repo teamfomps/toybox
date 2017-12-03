@@ -7,8 +7,10 @@ git_source(:github) do |repo_name|
 end
 
 gem 'pry-rails'
+gem 'better_errors'
+gem 'binding_of_caller'
 
-gem 'friendly_id', '~> 5.2.0' # Note: You MUST use 5.0.0 or greater for Rails 4.0+
+gem 'friendly_id', '~> 5.2.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.2'
@@ -26,8 +28,6 @@ gem 'haml'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'fog-aws'
-gem 'better_errors'
-gem 'binding_of_caller'
 
 gem 'stripe'
 gem 'administrate'

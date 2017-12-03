@@ -13,7 +13,7 @@ function AudioPlayer() {
         currentUrl = '';
         return;
       }
-      sound = new Howl({src: [url]});
+      sound = new Howl({src: [url], html5: true});
       currentUrl = url;
       sound.play();
     }

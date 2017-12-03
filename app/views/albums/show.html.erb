@@ -14,10 +14,7 @@
           <td class="track-number"><%= song.track_number %>.</td>
           <td class="track-title"><%= song.title %>
           <td class="track-audio-player">
-            <object type="application/x-shockwave-flash" data="/flash/musicplayer.swf?song_url=<%= song.audio_file.url %>" width="17" height="17">
-	    			    <param name="movie" value="/flash/musicplayer.swf?song_url=<%= song.audio_file.url %>">
-	    			    X
-	    	    </object>
+            <i class="fa fa-play audio-sample" aria-hidden="true" data-url="<%= song.audio_file.url %>"></i>
           </td>
           <td class="track-lyrics">&nbsp;|&nbsp;<%= link_to 'lyrics', album_song_path(@album, song) %></td>
         </tr>
@@ -40,3 +37,46 @@
     <%= f.submit 'Add to cart' %>
   <% end %>
 <% end %>
+
+<script>
+  var player = AudioPlayer();
+  $(function() {
+    $('.audio-sample').on('click', function(e) {
+      var wasPlaying = $(this).hasClass('fa-stop');
+
+      // Set everything to the play button.
+      $('.audio-sample').removeClass('fa-stop').addClass('fa-play');
+
+      player.select($(this).data('url'));
+
+      if (wasPlaying) {
+        // Change to play button
+        $(this).removeClass('fa-stop').addClass('fa-play');
+      } else {
+        // Change to stop button
+        $(this).removeClass('fa-play').addClass('fa-stop');
+      }
+    })
+  });
+</script>
+
+<!-- <script>
+  // Dummy. Makes stuff easier.
+  var player = {
+    play: function(url) {
+
+    },
+
+  }
+
+  $(function() {
+    $('.audio-sample-play').on('click', function(e) {
+      e.preventDefault();
+      sound.stop();
+      sound = new Howl({
+        src: [$(this).data('url')]
+      });
+      sound.play();
+    });
+  });
+</script> -->

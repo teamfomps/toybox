@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201045722) do
+ActiveRecord::Schema.define(version: 20171206042237) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20171201045722) do
     t.datetime "updated_at", null: false
     t.string "sku"
     t.string "stripe_id"
+    t.string "digital_download_url"
     t.index ["category_id"], name: "index_albums_on_category_id"
   end
 

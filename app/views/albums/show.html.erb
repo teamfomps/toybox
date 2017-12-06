@@ -23,10 +23,19 @@
   </table>
 </div>
 
+<% if @album.digital_download_url? %>
+  <div style="clear:both;">
+    <h3>
+      <%= link_to 'Digital Download: $9.99', @album.digital_download_url %>
+    </h3>
+  </div>
+  <br>
+<% end %>
+
 <% if @album.for_sale? && store_enabled? %>
 
   <div style="clear:both;">
-    <h3>Price
+    <h3>Audio CD:
       <span id="price"><%= format_pennies(@album.price_in_pennies) %></span>
     </h3>
   </div>
@@ -36,12 +45,6 @@
     <%= f.number_field :quantity, value:  1 %>
     <%= f.submit 'Add to cart' %>
   <% end %>
-<% end %>
-
-<% if @album.digital_download_url? %>
-  <div>
-    <%= link_to 'Digital Download', @album.digital_download_url %>
-  </div>
 <% end %>
 
 <script>

@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   get '/performance/chris-and-jack', to: 'pages#chris_jack'
 
   resources :messages, only: [:new, :create]
-  resources :albums, only: [:show] do
+  resources :albums, only: [:show, :index] do
     resources :songs, only: [:show]
   end
 

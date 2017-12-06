@@ -23,6 +23,7 @@ class AlbumDashboard < Administrate::BaseDashboard
       image_on_index: false,
       multiple: false
     ).freeze,
+    digital_download_url: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     sku: Field::String,
@@ -74,6 +75,7 @@ class AlbumDashboard < Administrate::BaseDashboard
     :for_sale,
     :published,
     :cover_art,
+    :digital_download_url
   ].freeze
 
   # Overwrite this method to customize how albums are displayed

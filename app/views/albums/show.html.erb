@@ -27,7 +27,7 @@
 
   <div style="clear:both;">
     <h3>Price
-    <span id="price"><%= format_pennies(@album.price_in_pennies) %></span>
+      <span id="price"><%= format_pennies(@album.price_in_pennies) %></span>
     </h3>
   </div>
 
@@ -36,6 +36,12 @@
     <%= f.number_field :quantity, value:  1 %>
     <%= f.submit 'Add to cart' %>
   <% end %>
+<% end %>
+
+<% if @album.digital_download_url? %>
+  <div>
+    <%= link_to 'Digital Download', @album.digital_download_url %>
+  </div>
 <% end %>
 
 <script>

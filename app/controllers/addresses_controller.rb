@@ -21,7 +21,7 @@ class AddressesController < ApplicationController
         :address => {
           :line1 => @address.line1,
           :city => @address.city,
-          :state => @address.state_province
+          :state => @address.state_province,
           :country => @address.country,
           :postal_code => @address.postal_code
         }
